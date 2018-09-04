@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 06:38:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 13:20:28 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 08:40:17 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static size_t	last(t_s **s, char **temp)
 		ft_strdel(&hold);
 		x++;
 	}
+	free_array(temp, ft_array_size(temp));
 	return (1);
 }
 
@@ -43,6 +44,8 @@ static size_t	beforelast(t_s **s, char *t)
 	size_t	y;
 
 	if (!(temp = ft_strsplit(t, ' ')))
+		return (0);
+	if (ft_strequ(temp[0], ""))
 		return (0);
 	x = 0;
 	while (temp[x])

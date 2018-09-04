@@ -6,11 +6,27 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 06:38:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 08:40:17 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 09:15:11 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
+
+static int	*placement(int c)
+{
+	int	*tab;
+	int	x;
+
+	if (!(tab = (int*)malloc(sizeof(int) * c)))
+		exit(0);
+	x = 0;
+	while (x < c)
+	{
+		tab[x] = 0;
+		x++;
+	}
+	return (tab);
+}
 
 static size_t	last(t_s **s, char **temp)
 {
@@ -19,6 +35,9 @@ static size_t	last(t_s **s, char **temp)
 	char	*hold;
 
 	x = 0;
+	(*s)->ssa = ft_array_size(temp);
+	(*s)->sa = placement((*s)->ssa);
+	(*s)->sb = placement((*s)->ssa);
 	while (x < (*s)->ssa)
 	{
 		num = ft_atoi(temp[x]);
@@ -84,22 +103,6 @@ size_t	valid(t_s **s, char **v)
 	return (beforelast(s, temp));
 }
 
-static int	*placement(int c)
-{
-	int	*tab;
-	int	x;
-
-	if (!(tab = (int*)malloc(sizeof(int) * c)))
-		exit(0);
-	x = 0;
-	while (x < c)
-	{
-		tab[x] = 0;
-		x++;
-	}
-	return (tab);
-}
-
 t_s	*init(int c)
 {
 	t_s	*s;
@@ -107,7 +110,5 @@ t_s	*init(int c)
 	s = (t_s*)malloc(sizeof(t_s));
 	s->ssa = c - 1;
 	s->ssb = 0;
-	s->sa = placement(s->ssa);
-	s->sb = placement(s->ssa);
 	return (s);
 }
