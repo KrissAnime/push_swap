@@ -6,13 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 06:38:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 09:15:11 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 09:25:46 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-static int	*placement(int c)
+static int		*placement(int c)
 {
 	int	*tab;
 	int	x;
@@ -62,9 +62,7 @@ static size_t	beforelast(t_s **s, char *t)
 	size_t	x;
 	size_t	y;
 
-	if (!(temp = ft_strsplit(t, ' ')))
-		return (0);
-	if (ft_strequ(temp[0], ""))
+	if (!(temp = ft_strsplit(t, ' ')) || ft_strequ(temp[0], ""))
 		return (0);
 	x = 0;
 	while (temp[x])
@@ -86,7 +84,7 @@ static size_t	beforelast(t_s **s, char *t)
 	return (last(s, temp));
 }
 
-size_t	valid(t_s **s, char **v)
+size_t			valid(t_s **s, char **v)
 {
 	size_t	x;
 	char	*temp;
@@ -103,7 +101,7 @@ size_t	valid(t_s **s, char **v)
 	return (beforelast(s, temp));
 }
 
-t_s	*init(int c)
+t_s				*init(int c)
 {
 	t_s	*s;
 

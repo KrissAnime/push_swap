@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 10:16:08 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 08:38:07 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 09:26:38 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	max_min(t_s **s)
 void		simple_sort(t_s **s)
 {
 	int	num;
+
 	while (1)
 	{
 		num = check_stack(s);
@@ -86,11 +87,5 @@ void		simple_sort(t_s **s)
 			break ;
 		max_min(s);
 		sort(s);
-//		sleep(1);
-//		ft_putendl("stack a");
-//		print_array_int((*s)->sa, '\n', (*s)->ssa, 1);
-//		ft_putendl("\nstack b");
-//		print_array_int((*s)->sb, '\n', (*s)->ssb, 1);
-//		ft_putendl("");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/23 06:36:34 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 13:34:28 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 09:23:36 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int c, char **v)
 	if (c > 1 && c < 7)
 	{
 		s = init(c);
-		if(!valid(&s, v))
+		if (!valid(&s, v))
 		{
 			free_s(&s);
 			ft_putendl_fd("Error", 2);
