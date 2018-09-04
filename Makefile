@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/07 08:38:53 by cbester           #+#    #+#              #
-#    Updated: 2018/09/03 13:32:22 by cbester          ###   ########.fr        #
+#    Updated: 2018/09/04 08:11:53 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ CHECK_FUNC = init.c push_to_a.c r_both.c r_stack.c swap_both.c rr_both.c\
 			 check_main.c free_s.c
 
 PUSH_FUNC = init.c push_to_a.c r_both.c r_stack.c swap_both.c  rr_both.c\
-			rr_stack.c swap_a.c swap_b.c push_to_b.c minisort_a.c push_main.c\
-			check.c simple_sort.c check_stack.c minisort_b.c
+			rr_stack.c swap_a.c swap_b.c push_to_b.c push_main.c free_s.c\
+			check.c simple_sort.c check_stack.c 
 
 CHECK_FILES = $(addprefix $(C_DIR), $(CHECK_FUNC))
 PUSH_FILES = $(addprefix $(P_DIR), $(PUSH_FUNC))

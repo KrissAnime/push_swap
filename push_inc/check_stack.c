@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 10:23:58 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/07 14:09:04 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 08:35:18 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ int			check_stack(t_s **s)
 
 	a = check_a(*s);
 	b = check_b(*s);
-	if (a == 0 && b == 0)
-		return (FAILED);
-	if (a == 1 && b == 1)
-		return (TRY);
+	if (a == SORTED && b == SORTED)
+		return (SORTED);
 	return (FAILED);
 }

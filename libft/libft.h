@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/31 11:14:53 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 08:23:22 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void					ft_striteri(char *s, void (*f)(unsigned int, char *));
 **	Functions that print out the desired input
 */
 
+void					print_array_int(int *t, char c, size_t s, int fd);
 void					print_array(char **array, char c, int fd);
 void					ft_putendl(char const *s);
 void					ft_putendl_fd(char const *s, int fd);

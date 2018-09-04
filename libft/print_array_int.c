@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_main.c                                       :+:      :+:    :+:   */
+/*   print_array_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/23 06:36:34 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 06:46:25 by cbester          ###   ########.fr       */
+/*   Created: 2018/09/04 08:18:13 by cbester           #+#    #+#             */
+/*   Updated: 2018/09/04 08:25:26 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/push_swap.h"
+#include "libft.h"
 
-int	main(int c, char **v)
+void	print_array_int(int *t, char c, size_t s, int fd)
 {
-	t_s		*s;
+	size_t	x;
 
-	if (c > 1 && c < 7)
+	x = 0;
+	ft_putnbr_fd(t[x++], fd);
+	while (x < s)
 	{
-		s = init(c);
-		if (!valid(&s, v))
-		{
-			free_s(&s);
-			ft_putendl_fd("Error", 2);
-			exit(0);
-		}
-		sort_in(&s);
-		free_s(&s);
+		ft_putchar_fd(c, fd);
+		ft_putnbr_fd(t[x], fd);
+		x++;
 	}
-	exit(0);
 }

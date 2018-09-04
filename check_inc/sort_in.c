@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 10:15:58 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 13:28:49 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 06:47:43 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_state(t_s *s)
 
 	if (s->ssb != 0)
 	{
-		ft_putstr("KO\n");
+		ft_putendl("KO\n");
 		return ;
 	}
 	x = -1;
@@ -28,11 +28,11 @@ static void	check_state(t_s *s)
 			break ;
 		if (s->sa[x] > s->sa[x + 1])
 		{
-			ft_putstr("KO\n");
+			ft_putendl("KO\n");
 			return ;
 		}
 	}
-	ft_putstr("OK\n");
+	ft_putendl("OK\n");
 }
 
 static int	mod(t_s **s, char *line)
@@ -76,7 +76,7 @@ void		sort_in(t_s **s)
 		if (!mod(s, line))
 		{
 			free(line);
-			ft_putendl("Error");
+			ft_putendl_fd("Error", 2);
 			return ;
 		}
 		ft_strdel(&line);
