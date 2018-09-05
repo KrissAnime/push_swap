@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 08:36:16 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 08:23:22 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 11:24:35 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char					*ft_strnstr(const char *haystack, const char *needle,
 
 int						get_next_line(const int fd, char **line);
 int						get_next_line_var(const int fd, char **line,
-		size_t buffer);
+		int buffer);
 
 /*
 ** 2-Dimensional array functions
@@ -153,6 +153,7 @@ int						ft_dubcheck(int *tab, size_t s, int num);
 ** size_t return functions
 */
 
+size_t					ft_numsplit(char const *s, char c);
 size_t					ft_array_size(char **array);
 size_t					ft_findchar(char *s, char c);
 size_t					ft_strlcat(char *dst, const char *src, size_t dstsize);

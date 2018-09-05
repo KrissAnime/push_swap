@@ -6,13 +6,13 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 14:12:18 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 09:02:31 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 10:42:16 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_numsplit(char const *s, char c)
+size_t		ft_numsplit(char const *s, char c)
 {
 	size_t	i;
 	int		x;

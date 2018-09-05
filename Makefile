@@ -6,7 +6,7 @@
 #    By: cbester <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/07 08:38:53 by cbester           #+#    #+#              #
-#    Updated: 2018/09/04 08:11:53 by cbester          ###   ########.fr        #
+#    Updated: 2018/09/04 11:14:00 by cbester          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ LIBRARY = $(addprefix $(LIBRARY_DIR), $(LIBRARY_NAME))
 FLAGS = -Wall -Wextra -Werror
 
 CHECK_FUNC = init.c push_to_a.c r_both.c r_stack.c swap_both.c rr_both.c\
-			 rr_stack.c swap_a.c swap_b.c sort_in.c push_to_b.c shift.c\
+			 rr_stack.c swap_a.c swap_b.c sort_in.c push_to_b.c\
 			 check_main.c free_s.c
 
-PUSH_FUNC = init.c push_to_a.c r_both.c r_stack.c swap_both.c  rr_both.c\
+PUSH_FUNC = init.c push_to_a.c r_both.c r_stack.c swap_both.c rr_both.c\
 			rr_stack.c swap_a.c swap_b.c push_to_b.c push_main.c free_s.c\
 			check.c simple_sort.c check_stack.c 
 

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/20 11:17:10 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/03 13:45:30 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 09:36:15 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct	s_s
 	int			*sb;
 }				t_s;
 
-t_s				*init(int c);
+t_s				*init(int c, char **v);
 
 size_t			valid(t_s **s, char **v);
 

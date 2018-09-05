@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 10:16:08 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 09:26:38 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 11:50:52 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	minisort(int *tab, size_t ss, t_s **s)
 			check(SWAP_A, s);
 		return ;
 	}
-	if (tab[0] > tab[1] && tab[0] < tab[2])
-		check(SWAP_A, s);
 	if (tab[1] > tab[0] && tab[1] > tab[2])
 		check(REVERSE_A, s);
 	if (tab[0] > tab[1] && tab[0] > tab[2])
 		check(ROTATE_A, s);
+	if (tab[0] > tab[1] && tab[0] < tab[2])
+		check(SWAP_A, s);
 }
 
 static void	sort(t_s **s)

@@ -1,100 +1,102 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_var.c                                :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 07:11:32 by cbester           #+#    #+#             */
-/*   Updated: 2018/08/03 11:27:14 by cbester          ###   ########.fr       */
+/*   Created: 2018/08/29 09:52:53 by cbester           #+#    #+#             */
+/*   Updated: 2018/09/04 11:25:40 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*ft_strjoinfree(char *s1, char *s2)
+static char		*line_ret(char *str, t_list *file)
 {
 	size_t	x;
-	size_t	ls1;
-	size_t	ls2;
-	char	*str;
-
-	ls1 = ft_strlen(s1);
-	ls2 = ft_strlen(s2);
-	if (!(s1) || !(s2))
-		return (NULL);
-	if (!(str = (char*)malloc(ls1 + ls2 + 1)))
-		return (NULL);
-	x = -1;
-	while (s1[++x] != '\0')
-		str[x] = s1[x];
-	x = -1;
-	while ((s2[++x]) != '\0')
-		str[x + ls1] = s2[x];
-	free(s1);
-	str[x + ls1] = '\0';
-	return (str);
-}
-
-static void		ft_copy_buff(t_list **control, char **line)
-{
-	int		i;
-	int		x;
+	size_t	len;
+	char	*ret;
 	char	*temp;
 
-	i = 0;
-	temp = ((char*)(*control)->content);
-	x = ft_strlen(temp);
-	while (temp[i] != '\n' && temp[i] != '\0')
-		i++;
-	(*line) = ft_strsub((*control)->content, 0, i);
-	if (x > i)
+	x = 0;
+	len = ft_strlen(str);
+	while (str[x] && str[x] != '\n')
+		x++;
+	ret = ft_strsub(str, 0, x);
+	if (!str[x] || (str[x] && !str[x + 1]))
 	{
-		temp = (*control)->content;
-		temp = ft_strsub(temp, i + 1, x);
-		free((*control)->content);
-		(*control)->content = ft_strdup(temp);
-		free(temp);
+		ft_strdel(&str);
+		file->content = str;
+		return (ret);
 	}
-	else
-		ft_strclr((*control)->content);
+	temp = str;
+	str = ft_strdup(str + x + 1);
+	free(temp);
+	file->content = str;
+	return (ret);
 }
 
-static t_list	*ft_valid_buff(int fd, t_list **files)
+static t_list	*find_file(const int fd, t_list **list)
 {
-	t_list	*temp;
+	t_list	*file;
 
-	temp = *files;
-	while (temp)
+	file = *list;
+	while (file)
 	{
-		if ((int)temp->content_size == fd)
-			return (temp);
-		temp = temp->next;
+		if ((int)file->content_size == fd)
+			return (file);
+		file = file->next;
 	}
-	temp = ft_lstnew("\0", fd);
-	ft_lstadd(files, temp);
-	return (temp);
+	file = ft_lstnew(0, fd);
+	file->content = ft_strnew(0);
+	file->content_size = fd;
+	ft_lstadd(list, file);
+	return (file);
 }
 
-int				get_next_line_var(const int fd, char **line, size_t buffer)
+static size_t	read_file(const int fd, char **str, int buffer)
 {
-	static t_list	*files = NULL;
-	t_list			*control;
-	char			buff[buffer + 1];
-	int				r;
+	int		ret;
+	char	buff[buffer + 1];
 
-	if (fd < 0 || !line || (r = read(fd, buff, 0) < 0))
-		return (-1);
-	control = ft_valid_buff(fd, &files);
-	while ((r = read(fd, buff, buffer)) > 0)
+	while (!(ft_strchr(*str, '\n')))
 	{
-		buff[r] = '\0';
-		control->content = ft_strjoinfree(control->content, buff);
-		if (ft_strchr(buff, '\n'))
+		ret = read(fd, buff, buffer);
+		if (ret == -1)
+			return (ERROR);
+		buff[ret] = '\0';
+		*str = ft_strjoinfree(*str, buff);
+		if (ret == 0)
+		{
+			if (**str == '\0')
+			{
+				free(*str);
+				*str = NULL;
+				return (DONE);
+			}
 			break ;
+		}
 	}
-	if ((ft_strlen((control)->content)) == 0 && r < 1)
-		return (0);
-	ft_copy_buff(&control, line);
-	return (1);
+	return (READ);
+}
+
+int				get_next_line_var(const int fd, char **line, int buffer)
+{
+	static t_list	*files;
+	t_list			*file;
+	char			*str;
+	size_t			ret;
+
+	if (buffer <= 0 || !line || fd < -1)
+		return (ERROR);
+	file = find_file(fd, &files);
+	str = file->content;
+	if (!str)
+		str = ft_strnew(0);
+	ret = read_file(fd, &str, buffer);
+	if (ret != 1)
+		return (ret);
+	*line = line_ret(str, file);
+	return (READ);
 }

@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 10:23:58 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 08:35:18 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/05 11:07:14 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	check_a(t_s *s)
 {
 	size_t	x;
 
-	if (s->ssa <= 1)
-		return (SORTED);
+	if (s->ssa < 1)
+		return (TRY);
 	x = -1;
 	while (++x < s->ssa)
 	{
@@ -33,7 +33,7 @@ static int	check_b(t_s *s)
 {
 	size_t	x;
 
-	if (s->ssb <= 1)
+	if (s->ssb < 1)
 		return (SORTED);
 	x = -1;
 	while (++x < s->ssb)
@@ -43,7 +43,7 @@ static int	check_b(t_s *s)
 		if (s->sb[x] < s->sb[x + 1])
 			return (FAILED);
 	}
-	return (SORTED);
+	return (TRY);
 }
 
 int			check_stack(t_s **s)

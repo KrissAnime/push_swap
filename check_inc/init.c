@@ -6,7 +6,7 @@
 /*   By: cbester <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 06:38:06 by cbester           #+#    #+#             */
-/*   Updated: 2018/09/04 09:25:46 by cbester          ###   ########.fr       */
+/*   Updated: 2018/09/04 11:07:38 by cbester          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,6 @@ static size_t	last(t_s **s, char **temp)
 	char	*hold;
 
 	x = 0;
-	(*s)->ssa = ft_array_size(temp);
-	(*s)->sa = placement((*s)->ssa);
-	(*s)->sb = placement((*s)->ssa);
 	while (x < (*s)->ssa)
 	{
 		num = ft_atoi(temp[x]);
@@ -101,12 +98,19 @@ size_t			valid(t_s **s, char **v)
 	return (beforelast(s, temp));
 }
 
-t_s				*init(int c)
+t_s				*init(int c, char **v)
 {
-	t_s	*s;
+	t_s		*s;
+	size_t	x;
 
 	s = (t_s*)malloc(sizeof(t_s));
-	s->ssa = c - 1;
+	x = ft_array_size(v) - 1;
+	if (x == 1)
+		s->ssa = ft_numsplit(v[1], ' ');
+	else
+		s->ssa = c - 1;
+	s->sa = placement(s->ssa);
+	s->sb = placement(s->ssa);
 	s->ssb = 0;
 	return (s);
 }
